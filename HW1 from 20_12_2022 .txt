@@ -1,0 +1,46 @@
+create table students(
+id integer primary key auto_increment,
+firstname varchar(64) not null,
+lastname varchar(64) not null,
+class integer check(class between 1 and 10),
+subject varchar(64) not null,
+mark integer check(mark between 0 and 5)
+);
+
+insert into students (firstname,lastname,class,subject,mark) values ("Семен","Степанов", 1,"Химия",0);
+insert into students (firstname,lastname,class,subject,mark) values ("Ольга","Семенова", 1,"Химия",1);
+insert into students (firstname,lastname,class,subject,mark) values ("Иван","Пуркин", 1,"Химия",4);
+insert into students (firstname,lastname,class,subject,mark) values ("Виктор","Большой", 2,"Химия",0);
+insert into students (firstname,lastname,class,subject,mark) values ("Василиса","Краса", 1,"Физика",5);
+insert into students (firstname,lastname,class,subject,mark) values ("Рита","Бережная", 3,"Химия",4);
+insert into students (firstname,lastname,class,subject,mark) values ("Лидия","Богданова", 4,"Химия",3);
+insert into students (firstname,lastname,class,subject,mark) values ("Генадий","Пчелкин", 5,"Физика",2);
+insert into students (firstname,lastname,class,subject,mark) values ("Игорь","Батькин", 3,"История",4);
+insert into students (firstname,lastname,class,subject,mark) values ("Владимир","Гайкин", 1,"Химия",3);
+
+set sql_safe_updates=0;
+delete from students
+where mark=0;
+
+select * from students
+where mark > 3;
+
+select * from students
+where class=1 and mark < 3;
+
+delete from students
+where class=1 and mark < 3;
+
+select * from students
+where length(firstname) > 4;
+
+select * from students
+where lastname like 'a%' and length(lastname) >= 3;
+
+select * from students
+where (subject like 'х%' and mark > 4) and ((class between 7 and 10) and mark < 3);
+
+
+select * from students;
+
+drop table students;
