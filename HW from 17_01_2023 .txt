@@ -10,8 +10,8 @@ use sakila;
 
 set sql_safe_updates = 0;
 
-update film
-set description = replace(description, "%beautiful%", "%amazing%");
+uupdate film
+set description = replace(description, "Beautiful", "Amazing");
 
 select * from film;
 
