@@ -1,0 +1,32 @@
+/*
+С помощью SQL создать три таблицы в рамках произвольной предметной области 
+(например, "стриминг-платформа" - см. конспект).
+*/
+
+use stream_service;
+
+select * from streams;
+
+select * from users;
+
+Create table Manufactures(
+manufac_id INT PRIMARY KEY auto_increment,
+company_name varchar(256) NOT NULL,
+company_address varchar(256) NOT NULL,
+email	varchar(64) not null,
+dt_reg	DATETIME default CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT exists videos(
+video_id int primary key auto_increment,
+manufac_id int,
+title varchar(256) not null,
+placed datetime DEFAULT CURRENT_TIMESTAMP,
+is_free tinyint(1) DEFAULT 1,
+FOREIGN KEY (manufac_id) REFERENCES manufactures(manufac_id)
+);
+
+select * from Manufactures;
+
+select * from videos;
+
