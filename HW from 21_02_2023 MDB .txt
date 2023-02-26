@@ -1,0 +1,59 @@
+Homework from 21.02.2023
+
+Описание занятия: 
+
+Конспект занятия
+https://western-appeal-39b.notion.site/GenTech-Feb-21-2023-207f3730415640daa7449f4d0665a861 
+
+(1) Напишите запрос, который создаст транзакцию (БД БАНК) с необходимыми полями.
+db.bank.transactions.insertOne({
+      "account_from": "123456789", // номер счета отправителя
+      "account_to": "987654321", // номер счета получателя
+      "amount": 1000 // сумма транзакции
+   });
+
+(2) Приведите в качестве примера пять типовых бизнес-процессов, связанных с транзакциями, и соотвествующие им запросы в MongoDB.
+
+1. Открытие счета
+db.bank.accounts.insertOne({
+	client_name: "John Smith",
+	date_of_birth: "07.01.1999"
+	address: " Backer street 122B London",
+	phone: "123987456",
+	account: "123456789",
+	date_of_openning: "26.02.2023"
+});
+
+2. Перевод на счет
+db.bank.transactions.insertOne({
+      "account_from": "123456789", // номер счета отправителя
+      "account_to": "987654321", // номер счета получателя
+      "amount": 1000, // сумма транзакции
+	  "text": "Payment for bill 4231",  // Назначение платежа
+	  "date_of_tranaction": "26.02.2023"	// Дата исполнения
+   });
+
+3. Возврат средств
+db.bank.transactions.insertOne({
+      "account_from": "987654321", // номер счета отправителя
+      "account_to": "123456789", // номер счета получателя
+      "amount": -1000, // сумма транзакции 
+	  "text": "wrong payment",	// Назначение платежа
+	  "date_of_tranaction": "26.02.2023"	// Дата исполнения
+   });
+   
+4. Зачисление на счет
+db.transactions.insertOne({
+      "account_to": "123456789", // номер счета получателя
+      "amount": 250 // сумма транзакции   
+	  "text": "cash"// вид пополнения
+	  });
+
+5. Закрытие счета
+db.bank.account.deleteOne({
+	client_name: "John Smith",
+	account: "123456789",
+	date_of_closing: "26.02.2023",
+	reason: "wrong information"
+});	  
+		
