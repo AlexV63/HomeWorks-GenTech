@@ -1,9 +1,9 @@
 (1) найти ко-во завершенных транзакций не в евро на сумму более 100
-db.bank.find(
+db.bank.countDocuments(
 {$and: [{currency: {$ne: "EUR"}}, 
 		{status: "completed"}, 
 		{amount: {$gt: 100}}]
-}).count()
+})
 
 (2) для всех пользователей не из Китая и не из Испании увеличить баланс на 20%
 db.bank.updateMany(
